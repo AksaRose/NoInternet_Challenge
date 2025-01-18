@@ -36,8 +36,8 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-black p-4">
+      <div className="bg-black p-6 rounded shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4 text-center">GitHub Repo Word Counter</h1>
         <div className="space-y-4">
           <div>
