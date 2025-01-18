@@ -44,7 +44,7 @@ async function fetchRepoContents(repoUrl, wpm) {
   
   function analyzeFiles(files, wpm) {
     let totalWords = 0;
-    const TOTAL_TIME_LIMIT = 3; // 3 hours limit
+    const TOTAL_TIME_LIMIT = 5; // 5 hours limit
   
     function countWords(content) {
       // Remove comments
@@ -85,7 +85,7 @@ async function fetchRepoContents(repoUrl, wpm) {
       },
       hasExternalCode,
       analysis: hasExternalCode ? 
-        "This repository likely contains external code or generated content, as it would take more than 3 hours to type." :
+        "This repository likely contains external code or generated content, as it would take more than 5 hours to type." :
         "The code in this repository could have been typed manually within the expected timeframe."
     };
   }

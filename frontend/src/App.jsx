@@ -36,12 +36,12 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black p-4">
-      <div className="bg-black p-6 rounded shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-4 text-center">GitHub Repo Word Counter</h1>
+    <div className="min-h-screen flex items-center justify-center bg-[#383838] p-4">
+      <div className="bg-[#623528] p-6 rounded shadow-lg w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-4 text-[#D9A883] text-center">Code Checker</h1>
         <div className="space-y-4">
           <div>
-            <label className="block font-medium mb-1" htmlFor="repoUrl">
+            <label className="block text-[#D9A883] font-medium mb-1" htmlFor="repoUrl">
               GitHub Repo URL
             </label>
             <input
@@ -55,7 +55,7 @@ const App = () => {
             />
           </div>
           <div>
-            <label className="block font-medium mb-1" htmlFor="wpm">
+            <label className="block text-[#D9A883] font-medium mb-1" htmlFor="wpm">
               Typing Speed (WPM)
             </label>
             <input
@@ -70,16 +70,22 @@ const App = () => {
           </div>
           <button
             onClick={handleFetch}
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
+            className="w-full bg-[#956643] text-white py-2 px-4 rounded hover:bg-[#E8D9C4] transition"
             disabled={loading}
           >
             {loading ? 'Analyzing...' : 'Analyze Repository'}
           </button>
         </div>
         {result && (
-          <div className="mt-4 p-4 bg-gray-200 rounded">
-            <pre className="whitespace-pre-wrap">{result}</pre>
+          <div className="mt-4 p-4 text-left bg-gray-200 rounded">
+          <div className="parent-container m-0 p-0">
+          <div className="whitespace-pre-wrap text-left pl-0 m-0 block">
+          {result}
           </div>
+          </div>
+
+        </div>
+        
         )}
       </div>
     </div>
