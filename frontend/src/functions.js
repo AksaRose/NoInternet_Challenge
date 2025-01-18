@@ -1,6 +1,4 @@
-
-
-async function fetchRepoContents(repoUrl) {
+async function fetchRepoContents(repoUrl, wpm) {
     // Extract owner and repo name from URL
     const urlParts = repoUrl.split('github.com/')[1].split('/');
     const owner = urlParts[0];
@@ -38,14 +36,15 @@ async function fetchRepoContents(repoUrl) {
   
     try {
       const files = await getFileContent('');
-      return analyzeFiles(files);
+      return analyzeFiles(files, wpm);
     } catch (error) {
       throw new Error(`Failed to fetch repository contents: ${error.message}`);
     }
   }
   
-  function analyzeFiles(files) {
+  function analyzeFiles(files, wpm) {
     let totalWords = 0;
+    const TOTAL_TIME_LIMIT = 3; // 3 hours limit
   
     function countWords(content) {
       // Remove comments
@@ -70,6 +69,24 @@ async function fetchRepoContents(repoUrl) {
       }
     });
   
-    return { totalWords };
+    // Calculate time to type
+    const timeToType = totalWords / wpm; // time in minutes
+    const hours = Math.floor(timeToType / 60);
+    const minutes = Math.floor(timeToType % 60);
+  
+    // Check if time exceeds limit
+    const hasExternalCode = hours > TOTAL_TIME_LIMIT;
+  
+    return {
+      totalWords,
+      timeToType: {
+        hours,
+        minutes
+      },
+      hasExternalCode,
+      analysis: hasExternalCode ? 
+        "This repository likely contains external code or generated content, as it would take more than 3 hours to type." :
+        "The code in this repository could have been typed manually within the expected timeframe."
+    };
   }
-  export default fetchRepoContents;
+  export default  fetchRepoContents;
